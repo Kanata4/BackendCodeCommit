@@ -1,0 +1,26 @@
+version: 0.2
+
+phase:
+  install:
+    runtime-versions:
+      java: correttoll
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      #进行编译
+      - mvn install
+      - echo npm install completed on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - mv ./target/shop-api-0.0.1-SNAPSHOT.jar ./target/app.jar
+      - chmod 777 ./appstart.sh
+artifacts:
+  files:
+    - target/app.jar
+    - batch/*
+    - appstart.sh
+    - appspec.yml
